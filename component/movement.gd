@@ -51,15 +51,15 @@ func _impulse(vel) -> void:
 func move(dir: Vector2):
 	if !can_move(): return;
 	
-	direction = dir;
+	direction = dir.normalized();
 	var velocity = direction * speed;
 	_impulse(velocity)
 	
 func move_to(position: Vector2):
-	# used for enemies to target
 	if !can_move(): return;
 
-	pass;
+	var direction = body.transform.get_origin().direction_to(position);
+	move(direction)
 	
 func dash():
 	if !can_dash(): return;

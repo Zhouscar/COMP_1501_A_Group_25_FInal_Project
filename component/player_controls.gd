@@ -32,9 +32,9 @@ func _process_defense():
 		defense.stop_defend();
 
 func _process_attack():
-	if (!(owner as Entity).has_component("Attack")):
+	if (!(owner as Entity).has_component("PlayerAttack")):
 		return;
-	var attack = (owner as Entity).get_component("Attack") as Attack;
+	var attack = (owner as Entity).get_component("PlayerAttack") as PlayerAttack;
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		attack.attack();

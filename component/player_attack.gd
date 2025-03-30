@@ -1,4 +1,4 @@
-class_name Attack extends Node
+class_name PlayerAttack extends Node
 
 @export var attack_cooldown = 0;
 @export var weapon: Weapon;
@@ -27,10 +27,10 @@ func can_attack():
 
 func _enter_tree() -> void:
 	assert(owner is Entity);
-	owner.set_meta(&"Attack", self);
+	owner.set_meta(&"PlayerAttack", self);
 
 func _exit_tree() -> void:
-	owner.remove_meta(&"Attack");
+	owner.remove_meta(&"PlayerAttack");
 
 func attack():
 	if !can_attack(): return;
