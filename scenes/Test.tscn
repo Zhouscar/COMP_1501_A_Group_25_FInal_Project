@@ -4648,3 +4648,4 @@ layer_7/tile_data = PackedInt32Array(3866635, 65541, 28, 3932171, 65541, 29, 399
 metadata/_edit_group_ = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_wen4y")]
+position = Vector2(1092, 206)

@@ -14,6 +14,10 @@ var direction = Vector2.ZERO;
 var dash_cooldown_timer: float = 0;
 var dash_duration_timer: float = 0;
 
+
+@export var animator: AnimatedSprite2D
+
+
 func state() -> StringName:
 	if dash_duration_timer > 0:
 		return "dashing";
@@ -55,6 +59,11 @@ func move(dir: Vector2):
 	var velocity = direction * speed;
 	_impulse(velocity)
 	
+	#flip character based on direction
+	if animator and direction.x != 0: 
+		animator.flip_h = direction.x < 0
+
+
 func move_to(position: Vector2):
 	if !can_move(): return;
 
@@ -81,6 +90,17 @@ func _process_dodge(delta: float):
 	if state() == "dashing":
 		_impulse(direction);
 		
+		
+func _update_animation():
+	match state():
+		"idle":
+			animator.play("idle")
+		"moving":
+			animator.play("walk")
+		
+
+
 func _physics_process(delta: float) -> void:	
 	_process_walksound();
 	_process_dodge(delta);
+	_update_animation()
