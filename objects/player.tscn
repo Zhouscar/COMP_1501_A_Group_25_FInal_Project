@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cdawksodvqin7" path="res://ecs/entity.gd" id="1_i8sra"]
 [ext_resource type="Texture2D" uid="uid://b5ld415r72r3q" path="res://assets/character sprite/swordman_1.png" id="2_i825w"]
+[ext_resource type="AudioStream" uid="uid://cpaykoj7c32s3" path="res://assets/sounds/walkingsound.mp3" id="7_i825w"]
 [ext_resource type="Script" uid="uid://beorewtjke25x" path="res://component/player_controls.gd" id="10_4vq5b"]
 [ext_resource type="Script" uid="uid://v4q47i32k0sn" path="res://component/health.gd" id="11_3nfmf"]
 [ext_resource type="Script" uid="uid://bo4vd6dpev208" path="res://component/movement.gd" id="11_42cpl"]
 [ext_resource type="Script" uid="uid://dx68mnp850bod" path="res://component/transform.gd" id="13_vqq2l"]
-[ext_resource type="AudioStream" uid="uid://bwyhou2p62ppf" path="res://assets/walking.mp3" id="14_r673r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3rfka"]
 atlas = ExtResource("2_i825w")
@@ -207,7 +207,7 @@ script = ExtResource("1_i8sra")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5esnd")
 animation = &"fight"
-frame_progress = 0.689267
+frame_progress = 0.211883
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3rfka")
@@ -236,4 +236,5 @@ reference = NodePath("..")
 metadata/_custom_type_script = "uid://dx68mnp850bod"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_r673r")
+stream = ExtResource("7_i825w")
+pitch_scale = 1.47
