@@ -24,6 +24,7 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="UpgradeArea" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4t58a")

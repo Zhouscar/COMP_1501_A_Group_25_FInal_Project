@@ -201,6 +201,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rfka"]
+size = Vector2(20, 26)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(4, -4)
@@ -211,7 +212,7 @@ sprite_frames = SubResource("SpriteFrames_5esnd")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 4)
+position = Vector2(-4, 5)
 shape = SubResource("RectangleShape2D_3rfka")
 
 [node name="Health" type="Node" parent="."]
