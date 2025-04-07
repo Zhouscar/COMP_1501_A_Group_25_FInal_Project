@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmjewic45yud6"]
+[gd_scene load_steps=21 format=3 uid="uid://dmjewic45yud6"]
 
 [ext_resource type="PackedScene" uid="uid://c1abrg1m6mll6" path="res://objects/player.tscn" id="1_wen4y"]
 [ext_resource type="Texture2D" uid="uid://b0dgj5taiwl7b" path="res://assets/tiles/Ground.png" id="2_w8un3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d14m7fqu5uobn" path="res://assets/tiles/Objects.png" id="7_bhwsq"]
 [ext_resource type="Texture2D" uid="uid://cd1r4e0t7fppq" path="res://assets/tiles/water_detilazation.png" id="8_2loec"]
 [ext_resource type="PackedScene" uid="uid://d4g0k3bbojryi" path="res://objects/boss.tscn" id="9_jbd4l"]
+[ext_resource type="PackedScene" uid="uid://buk24bto5mkk2" path="res://objects/slime.tscn" id="10_fu3ou"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0d6la"]
 texture = ExtResource("2_w8un3")
@@ -4685,3 +4686,6 @@ shape = SubResource("RectangleShape2D_jbd4l")
 [node name="Boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_jbd4l")]
 position = Vector2(900, 209)
 player = NodePath("../CharacterBody2D")
+
+[node name="Slime" parent="." instance=ExtResource("10_fu3ou")]
+position = Vector2(995, 308)
