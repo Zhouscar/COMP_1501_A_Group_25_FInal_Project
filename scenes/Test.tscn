@@ -4649,3 +4649,8 @@ metadata/_edit_group_ = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_wen4y")]
 position = Vector2(1092, 206)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(3.76, 3.76)
+position_smoothing_speed = 10.0
+rotation_smoothing_speed = 10.0
