@@ -5,6 +5,9 @@ class_name PlayerAttack extends Node
 
 var attack_cooldown_timer = 0;
 
+
+
+
 func get_melee_hitbox() -> Area2D:
 	if weapon == null: return null;
 	return weapon.find_child("Hitbox") as Area2D;
@@ -35,6 +38,8 @@ func _exit_tree() -> void:
 func attack():
 	if !can_attack(): return;
 	attack_cooldown_timer = attack_cooldown;
+	
+	
 	
 	if is_melee():
 		var hitbox = get_melee_hitbox();

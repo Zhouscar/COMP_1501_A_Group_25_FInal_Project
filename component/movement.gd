@@ -18,6 +18,7 @@ var dash_duration_timer: float = 0;
 @export var animator: AnimatedSprite2D
 
 
+
 func state() -> StringName:
 	if dash_duration_timer > 0:
 		return "dashing";
@@ -76,19 +77,28 @@ func dash():
 	dash_duration_timer = dash_duration;
 	
 func _process_walksound():
-	walk_sound.position = body.position;
-	
-	if state() == "moving" && !walk_sound.playing:
-		walk_sound.play();
-	elif !state() == "moving" && walk_sound.playing:
-		walk_sound.stop();
-			
+	if not walk_sound: return
+
+	if state() == "dashing":
+		return
+
+	walk_sound.position = body.position
+
+	if state() == "moving" and !walk_sound.playing:
+		walk_sound.play()
+	elif state() != "moving" and walk_sound.playing:
+		walk_sound.stop()
+
+
 func _process_dodge(delta: float):
 	dash_cooldown_timer -= delta;
 	dash_duration_timer -= delta;
 
-	if state() == "dashing":
-		_impulse(direction);
+	if dash_duration_timer > 0:
+		dash_duration_timer -= delta
+		
+		var dash_velocity = direction * dash_speed
+		_impulse(dash_velocity)
 		
 		
 func _update_animation():

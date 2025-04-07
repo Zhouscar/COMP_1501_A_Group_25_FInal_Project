@@ -2,6 +2,11 @@ class_name PlayerControls extends Node
 
 @export var body: CharacterBody2D;
 @export var collision: CollisionObject2D;
+
+
+
+
+
 	
 func _enter_tree() -> void:
 	assert(owner is Entity);
@@ -31,13 +36,28 @@ func _process_defense():
 	else:
 		defense.stop_defend();
 
+
+var attack_in_progress = false
+
 func _process_attack():
-	if (!(owner as Entity).has_component("PlayerAttack")):
-		return;
-	var attack = (owner as Entity).get_component("PlayerAttack") as PlayerAttack;
+	if !(owner as Entity).has_component("PlayerAttack"):
+		return
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		attack.attack();
+	var attack = (owner as Entity).get_component("PlayerAttack") as PlayerAttack
+	
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not attack_in_progress:
+		attack.attack()
+		print("attacked") 
+		$"../AnimatedSprite2D".play("attack")
+		print($"../AnimatedSprite2D")
+
+		attack_in_progress = true
+	
+	
+	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		attack_in_progress = false
+
 		
 
 func _physics_process(delta: float) -> void:
@@ -45,6 +65,8 @@ func _physics_process(delta: float) -> void:
 	_process_defense();
 	_process_attack();
 		
+
+
 func getInputDirection() -> Vector2:
 	var direction = Vector2.ZERO;
 	if Input.is_key_pressed(KEY_W):
