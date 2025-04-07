@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://d4g0k3bbojryi"]
+[gd_scene load_steps=19 format=3 uid="uid://d4g0k3bbojryi"]
 
 [ext_resource type="Script" uid="uid://b12ab5mmdqmr4" path="res://objects/boss.gd" id="1_p6cgf"]
 [ext_resource type="Texture2D" uid="uid://d0yk4ebdxb48g" path="res://assets/boss/Character_sheet.png" id="2_b3jdi"]
-[ext_resource type="PackedScene" uid="uid://bs36atimwqqam" path="res://objects/laser.tscn" id="2_pcu6v"]
+[ext_resource type="AudioStream" uid="uid://rmqslmajytp8" path="res://assets/sounds/laser.wav" id="3_b3jdi"]
+[ext_resource type="AudioStream" uid="uid://cuo1j337c80v0" path="res://assets/sounds/rockcrushing.mp3" id="4_pcu6v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcu6v"]
 atlas = ExtResource("2_b3jdi")
@@ -101,11 +102,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Boss" type="Node2D" node_paths=PackedStringArray("player")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6cgf"]
+size = Vector2(44, 43)
+
+[node name="Boss" type="Node2D"]
 script = ExtResource("1_p6cgf")
-player = NodePath(".")
-laser_scene = ExtResource("2_pcu6v")
-fire_radius = 100.0
+detection_radius = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7tvob")
@@ -118,3 +120,23 @@ offset_right = 17.0
 offset_bottom = -12.0
 scale = Vector2(0.359999, 0.359999)
 text = "1000"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(250, 0)
+
+[node name="ReloadTimer" type="Timer" parent="RayCast2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, -2.5)
+shape = SubResource("RectangleShape2D_p6cgf")
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b3jdi")
+volume_db = -5.0
+
+[node name="RockCrushing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pcu6v")
+
+[connection signal="timeout" from="RayCast2D/ReloadTimer" to="." method="_on_reload_timer_timeout"]
