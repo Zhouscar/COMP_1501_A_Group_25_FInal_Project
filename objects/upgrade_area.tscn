@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgaqx4ajia0la"]
+
+[ext_resource type="Script" uid="uid://bf5mwmdce5wvs" path="res://objects/upgrade_area.gd" id="1_4t58a"]
+[ext_resource type="Texture2D" uid="uid://4py60a4imt0k" path="res://assets/upgrade_images/Screenshot 2025-04-07 164119.png" id="2_dt4x6"]
+[ext_resource type="Texture2D" uid="uid://3h47e7o828tf" path="res://assets/upgrade_images/Screenshot 2025-04-07 164527.png" id="3_tyn26"]
+[ext_resource type="Texture2D" uid="uid://l0kc6nmq7dk3" path="res://assets/upgrade_images/Screenshot 2025-04-07 164645.png" id="4_17d0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3as8"]
+
+[sub_resource type="Theme" id="Theme_4t58a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyn26"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dt4x6"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="UpgradeArea" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4t58a")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.575, 1.575)
+shape = SubResource("RectangleShape2D_k3as8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_4t58a")
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Control3" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelUI" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -59.0
+offset_right = 92.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tyn26")
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="PanelUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -46.0
+offset_right = 74.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dt4x6")
+
+[node name="addHealth" type="TextureRect" parent="PanelUI/Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 26.0
+offset_right = 48.0
+offset_bottom = 64.0
+texture = ExtResource("2_dt4x6")
+expand_mode = 1
+
+[node name="addShield" type="TextureRect" parent="PanelUI/Panel"]
+offset_left = 53.0
+offset_top = 24.0
+offset_right = 96.0
+offset_bottom = 64.0
+texture = ExtResource("3_tyn26")
+expand_mode = 1
+
+[node name="addSpeed" type="TextureRect" parent="PanelUI/Panel"]
+offset_left = 100.0
+offset_top = 26.0
+offset_right = 141.0
+offset_bottom = 64.0
+texture = ExtResource("4_17d0m")
+expand_mode = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="gui_input" from="PanelUI/Panel/addHealth" to="." method="_on_add_health_gui_input"]
+[connection signal="gui_input" from="PanelUI/Panel/addShield" to="." method="_on_add_shield_gui_input"]
+[connection signal="gui_input" from="PanelUI/Panel/addSpeed" to="." method="_on_add_speed_gui_input"]
