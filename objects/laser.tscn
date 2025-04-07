@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs36atimwqqam"]
+
+[ext_resource type="Script" uid="uid://dnyqnvvuabstr" path="res://objects/laser.gd" id="1_3xrv4"]
+[ext_resource type="Texture2D" uid="uid://dvsdc3ao7aoip" path="res://assets/boss/Laser_sheet.png" id="2_e6e0a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6tf8"]
+atlas = ExtResource("2_e6e0a")
+region = Rect2(0, 204, 300, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhx8q"]
+atlas = ExtResource("2_e6e0a")
+region = Rect2(0, 306, 300, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqqu4"]
+atlas = ExtResource("2_e6e0a")
+region = Rect2(0, 408, 300, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2hse"]
+atlas = ExtResource("2_e6e0a")
+region = Rect2(0, 901, 300, 53)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yjda1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6tf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhx8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqqu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2hse")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_3xrv4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(48, 33)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_yjda1")
+frame = 2
+frame_progress = 0.289054

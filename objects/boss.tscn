@@ -1,0 +1,120 @@
+[gd_scene load_steps=17 format=3 uid="uid://d4g0k3bbojryi"]
+
+[ext_resource type="Script" uid="uid://b12ab5mmdqmr4" path="res://objects/boss.gd" id="1_p6cgf"]
+[ext_resource type="Texture2D" uid="uid://d0yk4ebdxb48g" path="res://assets/boss/Character_sheet.png" id="2_b3jdi"]
+[ext_resource type="PackedScene" uid="uid://bs36atimwqqam" path="res://objects/laser.tscn" id="2_pcu6v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcu6v"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhys4"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh8i6"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbem7"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haird"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(400, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfpkt"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(500, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8cei"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(600, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieiyj"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(700, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpwqn"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glcae"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flobe"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj8em"]
+atlas = ExtResource("2_b3jdi")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tvob"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcu6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhys4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh8i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbem7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haird")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfpkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8cei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieiyj")
+}],
+"loop": true,
+"name": &"changing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpwqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glcae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flobe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj8em")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Boss" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_p6cgf")
+player = NodePath(".")
+laser_scene = ExtResource("2_pcu6v")
+fire_radius = 100.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7tvob")
+animation = &"idle"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -35.0
+offset_right = 17.0
+offset_bottom = -12.0
+scale = Vector2(0.359999, 0.359999)
+text = "1000"
