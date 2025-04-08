@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs36atimwqqam"]
+[gd_scene load_steps=10 format=3 uid="uid://bs36atimwqqam"]
 
 [ext_resource type="Script" path="res://objects/laser.gd" id="1_3xrv4"]
 [ext_resource type="Texture2D" uid="uid://dvsdc3ao7aoip" path="res://assets/boss/Laser_sheet.png" id="2_e6e0a"]
+[ext_resource type="Texture2D" uid="uid://bbb4mq28nov4s" path="res://assets/pointlight/2d_lights_and_shadows_neutral_point_light.webp" id="3_e6e0a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6tf8"]
 atlas = ExtResource("2_e6e0a")
@@ -56,5 +57,11 @@ frame_progress = 0.289054
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_3xrv4")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1.52588e-05, -3.8147e-06)
+scale = Vector2(0.099375, 0.099375)
+color = Color(0, 0.419608, 1, 1)
+texture = ExtResource("3_e6e0a")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
