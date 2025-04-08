@@ -40,6 +40,7 @@ func _process_attack():
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	
 	var attack = (owner as Entity).get_component("PlayerAttack") as PlayerAttack;
 	
@@ -50,6 +51,16 @@ func _process_attack():
 		print($"../AnimatedSprite2D")
 		attack_in_progress = true;
 	
+=======
+
+	var attack = (owner as Entity).get_component("PlayerAttack") as PlayerAttack;
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not attack_in_progress:
+		attack.attack();
+		$"../AnimatedSprite2D".play("attack")
+		attack_in_progress = true;
+
+>>>>>>> Stashed changes
 =======
 
 	var attack = (owner as Entity).get_component("PlayerAttack") as PlayerAttack;
@@ -101,6 +112,7 @@ func _physics_process(delta: float) -> void:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 func _process(delta: float) -> void:
 	_update_player_stats_ui();
@@ -124,6 +136,9 @@ func _update_player_stats_ui():
 				damage = weapon.damage
 
 		stats_label.text = "Health: %s  |  Speed: %s  |  Damage: %s" % [current_health, speed, damage]
+=======
+	update_animation()
+>>>>>>> Stashed changes
 =======
 	update_animation()
 >>>>>>> Stashed changes
