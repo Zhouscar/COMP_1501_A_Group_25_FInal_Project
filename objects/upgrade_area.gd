@@ -28,9 +28,9 @@ func _on_add_health_gui_input(event: InputEvent) -> void:
 			var health = player.get_node("Health") as Health
 			health.heal(20)
 
-func _on_add_shield_gui_input(event: InputEvent) -> void:
+func _on_add_damage_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("shield pressed")
+		print("damage pressed")
 
 
 func _on_add_speed_gui_input(event: InputEvent) -> void:

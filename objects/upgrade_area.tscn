@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bf5mwmdce5wvs" path="res://objects/upgrade_area.gd" id="1_4t58a"]
 [ext_resource type="Texture2D" uid="uid://4py60a4imt0k" path="res://assets/upgrade_images/Screenshot 2025-04-07 164119.png" id="2_dt4x6"]
-[ext_resource type="Texture2D" uid="uid://3h47e7o828tf" path="res://assets/upgrade_images/Screenshot 2025-04-07 164527.png" id="3_tyn26"]
+[ext_resource type="Texture2D" uid="uid://df8uund0htum8" path="res://assets/upgrade_images/Screenshot 2025-04-07 212859.png" id="3_dt4x6"]
 [ext_resource type="Texture2D" uid="uid://l0kc6nmq7dk3" path="res://assets/upgrade_images/Screenshot 2025-04-07 164645.png" id="4_17d0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3as8"]
@@ -72,13 +72,13 @@ offset_bottom = 64.0
 texture = ExtResource("2_dt4x6")
 expand_mode = 1
 
-[node name="addShield" type="TextureRect" parent="PanelUI/Panel"]
+[node name="addDamage" type="TextureRect" parent="PanelUI/Panel"]
 layout_mode = 0
 offset_left = 53.0
 offset_top = 24.0
 offset_right = 96.0
 offset_bottom = 64.0
-texture = ExtResource("3_tyn26")
+texture = ExtResource("3_dt4x6")
 expand_mode = 1
 
 [node name="addSpeed" type="TextureRect" parent="PanelUI/Panel"]
@@ -93,5 +93,5 @@ expand_mode = 1
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="gui_input" from="PanelUI/Panel/addHealth" to="." method="_on_add_health_gui_input"]
-[connection signal="gui_input" from="PanelUI/Panel/addShield" to="." method="_on_add_shield_gui_input"]
+[connection signal="gui_input" from="PanelUI/Panel/addDamage" to="." method="_on_add_damage_gui_input"]
 [connection signal="gui_input" from="PanelUI/Panel/addSpeed" to="." method="_on_add_speed_gui_input"]
