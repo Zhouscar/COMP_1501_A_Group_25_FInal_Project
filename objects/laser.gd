@@ -1,18 +1,19 @@
-extends Area2D
+extends Node2D
 
-@export var direction: Vector2 = Vector2.ZERO
-@export var speed: float = 400
-@export var damage: int = 50
-
-func _ready():
-	connect("body_entered", Callable(self, "_on_body_entered"))
+@export var speed: float = 600
+var direction: Vector2 = Vector2.ZERO
 
 func _process(delta):
 	position += direction * speed * delta
+	
+func _ready():
+	$Area2D.body_entered.connect(_on_area_2d_body_entered)
 
-func _on_body_entered(body):
-	if body.has_method("get_component"):
-		var health = body.get_component("Health")
-		if health:
-			health.damage(damage)
-	queue_free()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_node("Health"):
+		var health = body.get_node("Health") as Health
+		health.damage(10)
+		print(health.current_health)
+		print("got damage")
+		queue_free()

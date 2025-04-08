@@ -1,78 +1,116 @@
 class_name Movement extends Node
 
-@export var body: CharacterBody2D
-@export var speed: float = 200
-@export var walk_sound: AudioStreamPlayer2D
-@export var dash_speed = 200
-@export var dash_duration = 0.2
-@export var dash_cooldown = 1.0
+@export var body: CharacterBody2D;
+@export var speed: float = 200;
+
+@export var walk_sound: AudioStreamPlayer2D;
+
+@export var dash_speed = 200;
+@export var dash_duration = 0.2;
+@export var dash_cooldown = 1.0;
+
+var direction = Vector2.ZERO;
+
+var dash_cooldown_timer: float = 0;
+var dash_duration_timer: float = 0;
+
+
 @export var animator: AnimatedSprite2D
 
-var direction = Vector2.ZERO
-var dash_cooldown_timer: float = 0
-var is_attacking = false
+
 
 func state() -> StringName:
-	if false:  # dash no longer needs a state timer
-		return "dashing"
-	elif is_attacking:
-		return "attacking"
+	if dash_duration_timer > 0:
+		return "dashing";
 	elif body.velocity.length() > 0:
-		return "moving"
+		return "moving";
 	else:
-		return "idle"
+		return "idle";
 
 func can_move():
-	if is_attacking:
-		return false
 	if (owner as Entity).has_component("Defense"):
-		var defense = (owner as Entity).get_component("Defense") as Defense
+		var defense = (owner as Entity).get_component("Defense") as Defense;
 		if defense.is_defending():
-			return false
-	return true
-
+			return;
+	return state() != "dashing";
+	
 func can_dash():
-	if is_attacking:
-		return false
 	if (owner as Entity).has_component("Defense"):
-		var defense = (owner as Entity).get_component("Defense") as Defense
+		var defense = (owner as Entity).get_component("Defense") as Defense;
 		if defense.is_defending():
-			return false
-	return dash_cooldown_timer <= 0
+			return;
+	return dash_cooldown_timer <= 0;
 
 func _enter_tree() -> void:
-	assert(owner is Entity)
-	owner.set_meta(&"Movement", self)
+	assert(owner is Entity);
+	owner.set_meta(&"Movement", self);
 
 func _exit_tree() -> void:
-	owner.remove_meta(&"Movement")
-
+	owner.remove_meta(&"Movement");
+	
 func _impulse(vel) -> void:
-	body.velocity = vel
-	body.move_and_slide()
-
-func _physics_process(delta):
-	if dash_cooldown_timer > 0:
-		dash_cooldown_timer -= delta
+	body.velocity.x = vel.x;
+	body.velocity.y = vel.y;
+	body.move_and_slide();
 
 func move(dir: Vector2):
-	if !can_move():
-		return
-	direction = dir.normalized()
-	var velocity = direction * speed
+	if !can_move(): return;
+	
+	direction = dir.normalized();
+	var velocity = direction * speed;
 	_impulse(velocity)
-
-	if animator and direction.x != 0:
+	
+	#flip character based on direction
+	if animator and direction.x != 0: 
 		animator.flip_h = direction.x < 0
 
+
+func move_to(position: Vector2):
+	if !can_move(): return;
+
+	var direction = body.transform.get_origin().direction_to(position);
+	move(direction)
+	
 func dash():
-	if !can_dash():
+	if !can_dash(): return;
+	dash_cooldown_timer = dash_cooldown;
+	dash_duration_timer = dash_duration;
+	
+func _process_walksound():
+	if not walk_sound: return
+
+	if state() == "dashing":
 		return
 
-	dash_cooldown_timer = dash_cooldown
+	walk_sound.position = body.position
 
-	if direction == Vector2.ZERO:
-		return  # No input, don't dash
+	if state() == "moving" and !walk_sound.playing:
+		walk_sound.play()
+	elif state() != "moving" and walk_sound.playing:
+		walk_sound.stop()
 
-	var dash_offset = direction.normalized() * dash_speed * 0.1  # Adjust dash distance factor
-	body.global_position += dash_offset
+
+func _process_dodge(delta: float):
+	dash_cooldown_timer -= delta;
+	dash_duration_timer -= delta;
+
+	if dash_duration_timer > 0:
+		dash_duration_timer -= delta
+		
+		var dash_velocity = direction * dash_speed
+		_impulse(dash_velocity)
+		
+		
+func _update_animation():
+	match state():
+		"idle":
+			animator.play("idle")
+		"moving":
+			animator.play("walk")
+		
+
+
+func _physics_process(delta: float) -> void:	
+	_process_walksound();
+	_process_dodge(delta);
+	_update_animation()
