@@ -91,6 +91,7 @@ texture = ExtResource("2_dt4x6")
 expand_mode = 1
 
 [node name="addShield" type="TextureRect" parent="PanelUI/Panel"]
+layout_mode = 0
 offset_left = 53.0
 offset_top = 24.0
 offset_right = 96.0
@@ -99,6 +100,7 @@ texture = ExtResource("3_tyn26")
 expand_mode = 1
 
 [node name="addSpeed" type="TextureRect" parent="PanelUI/Panel"]
+layout_mode = 0
 offset_left = 100.0
 offset_top = 26.0
 offset_right = 141.0
