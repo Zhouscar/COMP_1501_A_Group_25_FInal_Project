@@ -4784,4 +4784,7 @@ offset_top = 209.0
 offset_right = 947.0
 offset_bottom = 209.0
 player = NodePath("../Player")
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
