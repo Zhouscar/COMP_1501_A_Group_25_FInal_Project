@@ -24,6 +24,8 @@ func _exit_tree() -> void:
 func damage(amount: float):
 	var true_amount = get_damage_taken_ratio() * amount;
 	current_health = clamp(current_health - true_amount, 0, max_health);
+	print(owner);
+	print(current_health)
 	
 func heal(amount: float):
 	current_health = clamp(current_health + amount, 0, max_health)

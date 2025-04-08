@@ -16,10 +16,10 @@ func _process_movement():
 	if (!(owner as Entity).has_component("Movement")):
 		return;
 	var movement = (owner as Entity).get_component("Movement") as Movement;
-	
+
 	var direction = getInputDirection();
 	movement.move(direction);
-	
+
 	if Input.is_key_pressed(KEY_SPACE):
 		movement.dash();
 
@@ -27,7 +27,7 @@ func _process_defense():
 	if (!(owner as Entity).has_component("Defense")):
 		return;
 	var defense = (owner as Entity).get_component("Defense") as Defense;
-	
+
 	if Input.is_key_pressed(KEY_SHIFT):
 		defense.start_defend();
 	else:
@@ -36,6 +36,7 @@ func _process_defense():
 func _process_attack():
 	if !(owner as Entity).has_component("PlayerAttack"):
 		return;
+<<<<<<< Updated upstream
 	
 	var attack = (owner as Entity).get_component("PlayerAttack") as PlayerAttack;
 	
@@ -46,6 +47,16 @@ func _process_attack():
 		print($"../AnimatedSprite2D")
 		attack_in_progress = true;
 	
+=======
+
+	var attack = (owner as Entity).get_component("PlayerAttack") as PlayerAttack;
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not attack_in_progress:
+		attack.attack();
+		$"../AnimatedSprite2D".play("attack")
+		attack_in_progress = true;
+
+>>>>>>> Stashed changes
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		attack_in_progress = false;
 
@@ -53,6 +64,7 @@ func _physics_process(delta: float) -> void:
 	_process_movement();
 	_process_defense();
 	_process_attack();
+<<<<<<< Updated upstream
 
 func _process(delta: float) -> void:
 	_update_player_stats_ui();
@@ -76,6 +88,9 @@ func _update_player_stats_ui():
 				damage = weapon.damage
 
 		stats_label.text = "Health: %s  |  Speed: %s  |  Damage: %s" % [current_health, speed, damage]
+=======
+	update_animation()
+>>>>>>> Stashed changes
 
 func getInputDirection() -> Vector2:
 	var direction = Vector2.ZERO;
@@ -87,8 +102,29 @@ func getInputDirection() -> Vector2:
 		direction += Vector2(0, 1);
 	if Input.is_key_pressed(KEY_D):
 		direction += Vector2(1, 0);
-		
+
 	if direction.length() > 0:
 		return direction.normalized();
 	else:
 		return Vector2.ZERO;
+		
+func update_animation():
+	if !(owner as Entity).has_component("Movement"):
+		return
+
+	var movement = (owner as Entity).get_component("Movement") as Movement
+	if !owner.has_node("AnimatedSprite2D"):
+		return
+
+	var sprite = owner.get_node("AnimatedSprite2D") as AnimatedSprite2D
+	var current_state = movement.state()
+
+	match current_state:
+		"attacking":
+			pass # Let player_attack.gd handle this
+		"moving":
+			if sprite.animation != "walk" or !sprite.is_playing():
+				sprite.play("walk")
+		"idle":
+			if sprite.animation != "idle":
+				sprite.play("idle")

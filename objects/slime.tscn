@@ -1,10 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://buk24bto5mkk2"]
+[gd_scene load_steps=26 format=3 uid="uid://buk24bto5mkk2"]
 
-[ext_resource type="Script" uid="uid://brfhyajydd4s4" path="res://objects/slime.gd" id="1_fhcgk"]
+[ext_resource type="Script" uid="uid://cdawksodvqin7" path="res://ecs/entity.gd" id="1_di5y8"]
 [ext_resource type="Texture2D" uid="uid://b0tocvuou5xxk" path="res://assets/slime/slime_die.png" id="2_c2mx5"]
 [ext_resource type="Texture2D" uid="uid://cv4ujq6gr6wjn" path="res://assets/slime/slime_idle.png" id="3_hx3wf"]
 [ext_resource type="Texture2D" uid="uid://ehkqs2qsgalb" path="res://assets/slime/slime_run.png" id="4_6v7ag"]
-[ext_resource type="Texture2D" uid="uid://bbb4mq28nov4s" path="res://assets/pointlight/2d_lights_and_shadows_neutral_point_light.webp" id="5_c2mx5"]
+[ext_resource type="Script" uid="uid://05u46p5g0a1a" path="res://component/enemy.gd" id="4_di5y8"]
+[ext_resource type="Script" uid="uid://v4q47i32k0sn" path="res://component/health.gd" id="5_7cg68"]
+[ext_resource type="Script" uid="uid://2n6nyuwjcg6" path="res://component/plain_movement.gd" id="6_qyysi"]
+[ext_resource type="Script" uid="uid://dx68mnp850bod" path="res://component/transform.gd" id="7_pq6m8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_di5y8"]
 atlas = ExtResource("2_c2mx5")
@@ -134,25 +137,33 @@ radius = 10.198
 
 [node name="Slime" type="Node2D"]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_fhcgk")
-walk_radius = 100.0
-speed = 25.0
+script = ExtResource("1_di5y8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_4fa0n")
 animation = &"die"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Enemy" type="Node" parent="."]
+script = ExtResource("4_di5y8")
+metadata/_custom_type_script = "uid://05u46p5g0a1a"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_7cg68")
+metadata/_custom_type_script = "uid://v4q47i32k0sn"
+
+[node name="PlainMovement" type="Node" parent="." node_paths=PackedStringArray("body", "animator")]
+script = ExtResource("6_qyysi")
+body = NodePath("..")
+animator = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://2n6nyuwjcg6"
+
+[node name="Transform" type="Node" parent="." node_paths=PackedStringArray("reference")]
+script = ExtResource("7_pq6m8")
+reference = NodePath("..")
+metadata/_custom_type_script = "uid://dx68mnp850bod"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("CircleShape2D_fhcgk")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(0, 2)
-scale = Vector2(0.151797, 0.151797)
-color = Color(1, 0, 1, 1)
-texture = ExtResource("5_c2mx5")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
