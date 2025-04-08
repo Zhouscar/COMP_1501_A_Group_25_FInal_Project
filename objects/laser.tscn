@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bs36atimwqqam"]
 
-[ext_resource type="Script" uid="uid://dnyqnvvuabstr" path="res://objects/laser.gd" id="1_3xrv4"]
+[ext_resource type="Script" path="res://objects/laser.gd" id="1_3xrv4"]
 [ext_resource type="Texture2D" uid="uid://dvsdc3ao7aoip" path="res://assets/boss/Laser_sheet.png" id="2_e6e0a"]
 [ext_resource type="Texture2D" uid="uid://bbb4mq28nov4s" path="res://assets/pointlight/2d_lights_and_shadows_neutral_point_light.webp" id="3_e6e0a"]
 
