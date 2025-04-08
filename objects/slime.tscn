@@ -149,6 +149,7 @@ animation = &"die"
 shape = SubResource("CircleShape2D_fhcgk")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(0, 2)
 scale = Vector2(0.151797, 0.151797)
 color = Color(1, 0, 1, 1)

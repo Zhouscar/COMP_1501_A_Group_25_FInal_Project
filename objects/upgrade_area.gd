@@ -13,8 +13,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		$".".visible = true
 		print("player entered")
-
-
+		$UIAppear.play()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -27,11 +26,12 @@ func _on_add_health_gui_input(event: InputEvent) -> void:
 		if player and player.has_node("Health"):
 			var health = player.get_node("Health") as Health
 			health.heal(20)
+			$ClickUI.play()
 
 func _on_add_damage_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		print("damage pressed")
-
+		$ClickUI.play()
 
 func _on_add_speed_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -39,3 +39,4 @@ func _on_add_speed_gui_input(event: InputEvent) -> void:
 		if player and player.has_node("Movement"):
 			var movement = player.get_node("Movement") as Movement
 			movement.speed += 25
+			$ClickUI.play()
