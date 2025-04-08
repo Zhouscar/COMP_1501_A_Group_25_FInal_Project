@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bs36atimwqqam"]
 
-[ext_resource type="Script" uid="uid://dnyqnvvuabstr" path="res://objects/laser.gd" id="1_3xrv4"]
+[ext_resource type="Script" path="res://objects/laser.gd" id="1_3xrv4"]
 [ext_resource type="Texture2D" uid="uid://dvsdc3ao7aoip" path="res://assets/boss/Laser_sheet.png" id="2_e6e0a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6tf8"]
@@ -39,13 +39,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3xrv4"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5aiai"]
+radius = 5.09902
 
 [node name="Laser" type="Node2D"]
 script = ExtResource("1_3xrv4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(48, 0)
+position = Vector2(48, 33)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_yjda1")
 frame = 2
@@ -54,6 +55,5 @@ frame_progress = 0.289054
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_3xrv4")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+position = Vector2(0, 33)
+shape = SubResource("CircleShape2D_5aiai")
