@@ -1,6 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://dmjewic45yud6"]
+[gd_scene load_steps=26 format=3 uid="uid://dmjewic45yud6"]
 
-[ext_resource type="Script" path="res://scenes/test.gd" id="1_8bdjt"]
+[ext_resource type="Script" uid="uid://cc7i0dfvsu81o" path="res://scenes/test.gd" id="1_8bdjt"]
 [ext_resource type="PackedScene" uid="uid://c1abrg1m6mll6" path="res://objects/player.tscn" id="1_wen4y"]
 [ext_resource type="Texture2D" uid="uid://b0dgj5taiwl7b" path="res://assets/tiles/Ground.png" id="2_w8un3"]
 [ext_resource type="Texture2D" uid="uid://d3g8u28asyijm" path="res://assets/objects_separate/Rock1_shadow1_1.png" id="3_qca6q"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://buk24bto5mkk2" path="res://objects/slime.tscn" id="10_fu3ou"]
 [ext_resource type="AudioStream" uid="uid://6v7mlvskbxsw" path="res://assets/sounds/backgroundmusic.mp3" id="12_xftjw"]
 [ext_resource type="PackedScene" uid="uid://cgaqx4ajia0la" path="res://objects/upgrade_area.tscn" id="14_wnywe"]
+[ext_resource type="Texture2D" uid="uid://bbb4mq28nov4s" path="res://assets/pointlight/2d_lights_and_shadows_neutral_point_light.webp" id="15_1of5j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0d6la"]
 texture = ExtResource("2_w8un3")
@@ -4670,6 +4671,12 @@ position_smoothing_speed = 10.0
 rotation_smoothing_speed = 10.0
 metadata/_edit_group_ = true
 
+[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D"]
+position = Vector2(-3.325, 2.59)
+scale = Vector2(0.625, 0.648)
+energy = 0.8
+texture = ExtResource("15_1of5j")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -4703,11 +4710,13 @@ stream = ExtResource("12_xftjw")
 autoplay = true
 
 [node name="UpgradeArea" parent="." node_paths=PackedStringArray("player") groups=["player"] instance=ExtResource("14_wnywe")]
-offset_left = 947.0
-offset_top = 209.0
-offset_right = 947.0
-offset_bottom = 209.0
+visible = false
+offset_left = 124.0
+offset_top = 517.0
+offset_right = 124.0
+offset_bottom = 517.0
 player = NodePath("../CharacterBody2D")
+metadata/_edit_group_ = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -4719,3 +4728,50 @@ offset_bottom = 72.0
 text = "Health: 
 Speed: 
 Attack: "
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.176419, 0.176419, 0.176419, 1)
+
+[node name="UpgradesLight" type="PointLight2D" parent="."]
+position = Vector2(124, 517)
+scale = Vector2(0.625, 0.648)
+color = Color(0, 0.705882, 1, 1)
+energy = 0.8
+texture = ExtResource("15_1of5j")
+metadata/_edit_group_ = true
+
+[node name="FollowLights" type="PointLight2D" parent="."]
+position = Vector2(278, 524)
+scale = Vector2(0.0791404, 0.08503)
+color = Color(0.683686, 0.212476, 0.328826, 1)
+energy = 2.5
+texture = ExtResource("15_1of5j")
+metadata/_edit_group_ = true
+
+[node name="UpgradesLight2" type="PointLight2D" parent="FollowLights"]
+position = Vector2(593.882, -1270.14)
+scale = Vector2(2.668, 2.48)
+color = Color(0.491607, 0.255, 0.767637, 1)
+energy = 3.09
+texture = ExtResource("15_1of5j")
+
+[node name="UpgradesLight3" type="PointLight2D" parent="FollowLights"]
+position = Vector2(2716.69, -1364.23)
+scale = Vector2(3.1787, 3.11739)
+color = Color(0.683686, 0.212476, 0.328826, 1)
+energy = 0.94
+texture = ExtResource("15_1of5j")
+
+[node name="UpgradesLight4" type="PointLight2D" parent="FollowLights"]
+position = Vector2(4649.96, -2563.8)
+scale = Vector2(3.1787, 3.11739)
+color = Color(0.283019, 0.0610004, 0.117639, 1)
+energy = 0.94
+texture = ExtResource("15_1of5j")
+
+[node name="UpgradesLight5" type="PointLight2D" parent="FollowLights"]
+position = Vector2(6583.23, -2740.21)
+scale = Vector2(3.1787, 3.11739)
+color = Color(0.265002, 0.40651, 0.644421, 1)
+energy = 0.94
+texture = ExtResource("15_1of5j")

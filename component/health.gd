@@ -1,7 +1,7 @@
 class_name Health extends Node
 
 @export var current_health: float = 100;
-@export var max_health: float = 100;
+@export var max_health: float = 300;
 
 func is_dead():
 	return current_health <= 0;
