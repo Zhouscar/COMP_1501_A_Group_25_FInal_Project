@@ -36,3 +36,6 @@ func _on_add_damage_gui_input(event: InputEvent) -> void:
 func _on_add_speed_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		print("speed pressed")
+		if player and player.has_node("Movement"):
+			var movement = player.get_node("Movement") as Movement
+			movement.speed += 25
