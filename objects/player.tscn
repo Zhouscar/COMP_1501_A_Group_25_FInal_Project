@@ -135,7 +135,11 @@ animations = [{
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 "speed": 10.0
+=======
+"speed": 12.0
+>>>>>>> Stashed changes
 =======
 "speed": 12.0
 >>>>>>> Stashed changes
@@ -408,6 +412,11 @@ script = ExtResource("8_3rfka")
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+weapon = NodePath("../Weapon")
+metadata/_custom_type_script = "uid://bjcvrycm4g3g1"
+>>>>>>> Stashed changes
 =======
 weapon = NodePath("../Weapon")
 metadata/_custom_type_script = "uid://bjcvrycm4g3g1"
