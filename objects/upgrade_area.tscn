@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgaqx4ajia0la"]
+[gd_scene load_steps=8 format=3 uid="uid://cgaqx4ajia0la"]
 
 [ext_resource type="Script" uid="uid://bf5mwmdce5wvs" path="res://objects/upgrade_area.gd" id="1_4t58a"]
 [ext_resource type="Texture2D" uid="uid://4py60a4imt0k" path="res://assets/upgrade_images/Screenshot 2025-04-07 164119.png" id="2_dt4x6"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://l0kc6nmq7dk3" path="res://assets/upgrade_images/Screenshot 2025-04-07 164645.png" id="4_17d0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3as8"]
-
-[sub_resource type="Theme" id="Theme_4t58a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyn26"]
 bg_color = Color(0.169245, 0.169245, 0.169245, 1)
@@ -24,7 +22,6 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="UpgradeArea" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4t58a")
@@ -34,21 +31,6 @@ script = ExtResource("1_4t58a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(1.575, 1.575)
 shape = SubResource("RectangleShape2D_k3as8")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Control" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-theme = SubResource("Theme_4t58a")
-
-[node name="Control2" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Control3" type="Control" parent="HBoxContainer"]
-layout_mode = 2
 
 [node name="PanelUI" type="Panel" parent="."]
 layout_mode = 1

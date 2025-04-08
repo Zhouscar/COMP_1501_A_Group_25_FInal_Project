@@ -4702,8 +4702,9 @@ position = Vector2(995, 308)
 stream = ExtResource("12_xftjw")
 autoplay = true
 
-[node name="UpgradeArea" parent="." groups=["player"] instance=ExtResource("14_wnywe")]
+[node name="UpgradeArea" parent="." node_paths=PackedStringArray("player") groups=["player"] instance=ExtResource("14_wnywe")]
 offset_left = 947.0
 offset_top = 209.0
 offset_right = 947.0
 offset_bottom = 209.0
+player = NodePath("../CharacterBody2D")
