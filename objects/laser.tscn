@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bs36atimwqqam"]
 
-[ext_resource type="Script" uid="uid://dnyqnvvuabstr" path="res://objects/laser.gd" id="1_3xrv4"]
+[ext_resource type="Script" path="res://objects/laser.gd" id="1_3xrv4"]
 [ext_resource type="Texture2D" uid="uid://dvsdc3ao7aoip" path="res://assets/boss/Laser_sheet.png" id="2_e6e0a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6tf8"]
@@ -40,6 +40,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xrv4"]
+radius = 3.0
 
 [node name="Laser" type="Node2D"]
 script = ExtResource("1_3xrv4")
