@@ -29,3 +29,12 @@ func pick_new_target():
 	var distance = randf() * walk_radius
 	var offset = Vector2.RIGHT.rotated(angle) * distance
 	target_position = start_position + offset
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_node("Health"):
+		var health = body.get_node("Health") as Health
+		health.damage(5)
+		print(health.current_health)
+		print("slime damage")
+		
